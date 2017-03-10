@@ -4,7 +4,7 @@
 
  >  BaseDemo  引入client
 
-- aggregation 
+ - aggregation 
  聚合相关例子
  - count 
  计数相关的例子
