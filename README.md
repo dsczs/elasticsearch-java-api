@@ -2,7 +2,7 @@
 
 **包路径:com.vcg.community.elasticsearch.elasticsearch**
 
-1.  **json 存储例子中用到的各种json**
+ 1.  **json 存储例子中用到的各种json**
  2. **BaseDemo  引入client**
  2. **markdown 翻译的相关文档,markdown格式**
  4. 所有demo在src/test目录下
