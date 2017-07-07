@@ -17,7 +17,7 @@ public class BaseDemo {
     @Before
     public void setUp(){
         client = new TransportClient();
-        client.addTransportAddress(new InetSocketTransportAddress("localhost", 9300));
+        client.addTransportAddress(new InetSocketTransportAddress("123.57.68.250", 9300));
         elasticsearchTemplate = new ElasticsearchTemplate(client);
     }
 }

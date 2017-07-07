@@ -33,4 +33,9 @@ public class MultiMatchQueryDemo extends ElasticDemo {
 
     }
 
+    @Test
+    public void name() throws Exception {
+
+
+    }
 }

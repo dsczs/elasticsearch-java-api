@@ -21,7 +21,7 @@
   各种过滤器相关的例子
  - get
   获取文档的例子
-  - index
+ - index
     与索引相关的例子
  - percolator
   percolator相关的例子

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vcg.community</groupId>
-    <artifactId>elasticsearch1.5.1-java-api</artifactId>
+    <artifactId>elasticsearch-java-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -19,6 +19,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <developers>
+        <developer>
+            <id>felayman</id>
+            <name>felayman</name>
+            <email>felayman@gmail.com</email>
+        </developer>
+    </developers>
 
     <properties>
         <spring-version>4.2.8.RELEASE</spring-version>
@@ -60,6 +68,11 @@
                     <groupId>org.elasticsearch</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.wltea.ik-analyzer</groupId>
+            <artifactId>ik-analyzer</artifactId>
+            <version>3.2.8</version>
         </dependency>
     </dependencies>
 
