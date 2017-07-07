@@ -1,7 +1,7 @@
 package com.vcg.community.elasticsearch.query;
 
 import com.alibaba.fastjson.JSON;
-import com.vcg.community.model.px500.Photo;
+import com.vcg.community.mapping.Photo;
 import org.elasticsearch.common.lucene.search.function.CombineFunction;
 import org.elasticsearch.index.query.DisMaxQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;

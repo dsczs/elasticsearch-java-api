@@ -1,7 +1,7 @@
 package com.vcg.community.elasticsearch.query;
 
 import com.alibaba.fastjson.JSON;
-import com.vcg.community.model.px500.Photo;
+import com.vcg.community.mapping.Photo;
 import org.apache.commons.lang.math.RandomUtils;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.index.query.FilterBuilders;

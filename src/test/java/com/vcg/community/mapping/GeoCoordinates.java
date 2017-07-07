@@ -1,6 +1,4 @@
-package com.vcg.community.model;
-
-import org.springframework.data.elasticsearch.annotations.Document;
+package com.vcg.community.mapping;
 
 /**
  * @author lei.fang

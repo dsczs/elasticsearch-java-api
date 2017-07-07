@@ -1,6 +1,6 @@
 package com.vcg.community.elasticsearch.query;
 
-import com.vcg.community.model.px500.Photo;
+import com.vcg.community.mapping.Photo;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;

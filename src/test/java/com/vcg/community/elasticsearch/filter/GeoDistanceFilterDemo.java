@@ -1,7 +1,7 @@
 package com.vcg.community.elasticsearch.filter;
 
 import com.vcg.community.elasticsearch.BaseDemo;
-import com.vcg.community.model.px500.Photo;
+import com.vcg.community.mapping.Photo;
 import org.elasticsearch.common.geo.GeoDistance;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.FilterBuilder;

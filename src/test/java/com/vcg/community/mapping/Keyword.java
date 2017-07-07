@@ -1,4 +1,4 @@
-package com.vcg.community.model.px500;
+package com.vcg.community.mapping;
 
 import com.alibaba.fastjson.JSON;
 

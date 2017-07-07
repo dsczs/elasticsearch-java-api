@@ -1,9 +1,8 @@
-package com.vcg.community.model.px500;
+package com.vcg.community.mapping;
 
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.vcg.community.model.GeoCoordinates;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;

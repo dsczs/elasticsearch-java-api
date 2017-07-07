@@ -1,6 +1,6 @@
 package com.vcg.community.elasticsearch.query;
 
-import com.vcg.community.model.px500.Photo;
+import com.vcg.community.mapping.Photo;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
