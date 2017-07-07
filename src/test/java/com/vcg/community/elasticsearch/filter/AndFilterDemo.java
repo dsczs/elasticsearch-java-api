@@ -2,6 +2,7 @@ package com.vcg.community.elasticsearch.filter;
 
 import com.vcg.community.elasticsearch.BaseDemo;
 import com.vcg.community.mapping.Photo;
+import com.vcg.community.mapping.Tweet;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -37,6 +38,35 @@ public class AndFilterDemo extends BaseDemo {
 
     }
 
+    /**
+     * 官方java-api文档例子地址
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/and-filter.html'></a>
+     * 官方关于and的文档说明地址
+     * @see <a href='http://www.elastic.co/guide/en/elasticsearch/reference/1.5/query-dsl-and-filter.html'></a>
+     */
+    @Test
+    public void testForClient(){
+        FilterBuilder filter = FilterBuilders.andFilter(
+                FilterBuilders.rangeFilter("postDate").from("2010-03-01").to("2010-04-01"),
+                FilterBuilders.prefixFilter("name.second", "ba"));
+        client.prepareSearch("twitter")
+                .setTypes("tweet")
+                .setPostFilter(filter)
+                .execute()
+                .actionGet();
+    }
+
+    @Test
+    public void testForElasticsearchTemplate(){
+        SearchQuery searchQuery = new NativeSearchQuery(
+                QueryBuilders.matchAllQuery(),
+                FilterBuilders.andFilter(
+                        FilterBuilders.rangeFilter("postDate").from("2010-03-01").to("2010-04-01"),
+                        FilterBuilders.prefixFilter("name.second", "ba"))
+        );
+        elasticsearchTemplate.queryForList(searchQuery, Tweet.class);
+
+    }
 
 
 }

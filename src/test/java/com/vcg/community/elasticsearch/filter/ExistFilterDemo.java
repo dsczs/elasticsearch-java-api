@@ -19,19 +19,28 @@ import java.util.List;
  */
 public class ExistFilterDemo extends BaseDemo {
 
+    /**
+     * exists过滤的java-api
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/exists-filter.html'></a>
+     * exists过滤的文档说明
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/reference/1.5/query-dsl-exists-filter.html'></a>
+     */
     @Test
-    public void test(){
+    public void testForClient(){
+        FilterBuilder filter = FilterBuilders.existsFilter("user");
+        client.prepareSearch("twitter")
+                .setTypes("tweet")
+                .setPostFilter(filter)
+                .execute()
+                .actionGet();
+    }
 
+    @Test
+    public void testForElasticsearchTemplate(){
         FilterBuilder filterBuilder = FilterBuilders.existsFilter("geoCoordinates");
-
-
         SearchQuery searchQuery = new NativeSearchQuery(QueryBuilders.matchAllQuery(),filterBuilder);
-
         List<Photo> photoList = elasticsearchTemplate.queryForList(searchQuery, Photo.class);
-
         System.out.println("photoList:"+photoList);
-
-
     }
 
 }

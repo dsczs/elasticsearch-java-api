@@ -19,14 +19,27 @@ import java.util.List;
  */
 public class LimitFilterDemo extends BaseDemo {
 
+    /**
+     * limit过滤的java-api
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/limit-filter.html'></a>
+     * limit过滤的文档说明
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/query-dsl-filters.html'></a>
+     */
+    @Test
+    public void testForClient() throws Exception {
+        FilterBuilder filter = FilterBuilders.limitFilter(100);
+        client.prepareSearch("twitter")
+                .setTypes("tweet")
+                .setPostFilter(filter)
+                .execute()
+                .actionGet();
+    }
+
     @Test
     public void test(){
-        FilterBuilder filterBuilder = FilterBuilders.limitFilter(0);
-
+        FilterBuilder filterBuilder = FilterBuilders.limitFilter(100);
         SearchQuery searchQuery = new NativeSearchQuery(QueryBuilders.matchAllQuery(),filterBuilder);
-
         List<Photo> photoList = elasticsearchTemplate.queryForList(searchQuery, Photo.class);
-
         System.out.println("photoList:"+photoList);
     }
 

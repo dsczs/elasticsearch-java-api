@@ -19,15 +19,29 @@ import java.util.List;
  */
 public class TypeFilterDemo extends BaseDemo {
 
+
+    /**
+     *关于type过滤的java-api
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/type-filter.html'></a>
+     * 关于type过滤的文档说明
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/query-dsl-filters.html'></a>
+     * @throws Exception
+     */
+    @Test
+    public void testForClient() throws Exception {
+        FilterBuilder filter = FilterBuilders.typeFilter("tweet");
+        client.prepareSearch("twitter")
+                .setTypes("tweet")
+                .setPostFilter(filter)
+                .execute()
+                .actionGet();
+    }
+
     @Test
     public void test(){
-
         FilterBuilder filterBuilder = FilterBuilders.typeFilter("user");
-
         SearchQuery searchQuery = new NativeSearchQuery(QueryBuilders.matchAllQuery(),filterBuilder);
-
         List<Photo> photoList = elasticsearchTemplate.queryForList(searchQuery, Photo.class);
-
         System.out.println("photoList:"+photoList);
     }
 

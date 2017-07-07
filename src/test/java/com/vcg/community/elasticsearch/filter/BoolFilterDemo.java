@@ -19,17 +19,36 @@ import java.util.List;
  */
 public class BoolFilterDemo extends BaseDemo {
 
+    /**
+     * bool查询的java-api
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/bool-filter.html'></a>
+     * bool查询的文档说明
+     * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/query-dsl-filters.html'></a>
+     */
     @Test
-    public void test(){
+    public void testForClient(){
+        FilterBuilder filter = FilterBuilders.boolFilter()
+                .must(FilterBuilders.termFilter("tag", "wow"))
+                .mustNot(FilterBuilders.rangeFilter("age").from("10").to("20"))
+                .should(FilterBuilders.termFilter("tag", "sometag"))
+                .should(FilterBuilders.termFilter("tag", "sometagtag"));
+
+        client.prepareSearch("twitter")
+                .setTypes("tweet")
+                .setPostFilter(filter)
+                .execute()
+                .actionGet();
+
+    }
+
+    @Test
+    public void testForElasticsearchTemplate(){
         FilterBuilder filterBuilder = FilterBuilders.boolFilter()
                 .must(FilterBuilders.termFilter("state",0))
                 .must(FilterBuilders.rangeFilter("rating").from(22.0d).to(100.0d))
                 .should(FilterBuilders.termFilter("title","美女"));
-
         SearchQuery searchQuery = new NativeSearchQuery(QueryBuilders.matchAllQuery(),filterBuilder);
-
         List<Photo> photoList = elasticsearchTemplate.queryForList(searchQuery, Photo.class);
-
         System.out.println("photoList:"+photoList);
     }
 
