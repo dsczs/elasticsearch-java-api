@@ -1,7 +1,10 @@
 
+# elasticsearch官方翻译文档地址:[elasticsearch官方翻译](https://github.com/elasticsearch-cn/elasticsearch-definitive-guide)
 
-# elasticsearch官方翻译文档地址:[elasticsearch官方翻译](https://es.xiaoleilu.com/)
- 
+## 当前版本
+
+ Elasticsearch 5.x  [版本](https://github.com/elasticsearch-cn/elasticsearch-definitive-guide)
+
 ## 说明
 
     **包路径:com.vcg.community.elasticsearch.elasticsearch**
@@ -23,9 +26,5 @@
 
     git clone git@github.com:felayman/elasticsearch-java-api.git
 
-## 当前版本
 
-    Elasticsearch  [版本](https://www.elastic.co/guide/en/elasticsearch/client/java-api/1.5/index.html)
-  
- 
 
