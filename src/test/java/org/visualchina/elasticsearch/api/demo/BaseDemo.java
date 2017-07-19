@@ -1,11 +1,8 @@
 package org.visualchina.elasticsearch.api.demo;
 
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Before;
-import org.junit.Test;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 
 import java.net.InetAddress;
@@ -23,8 +20,8 @@ public class BaseDemo {
 
     @Before
     public void setUp() throws Exception {
-        client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300)) ;
+        client = TransportClient.builder().build();
+        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300)) ;
         elasticsearchTemplate = new ElasticsearchTemplate(client);
     }
 

@@ -12,16 +12,16 @@ import java.util.List;
  * @auhthor lei.fang@shijue.me
  * @since . 2017-07-19
  */
-@Document(indexName = "apn_index", type = "country")
+@Document(indexName = "apn_index_country", type = "country",replicas = 0)
 public class EsCountry {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.text,searchAnalyzer = "standard", analyzer = "standard",store = true)
+    @Field(type = FieldType.String,searchAnalyzer = "standard", analyzer = "standard",store = true)
     private String name;
 
-    @Field(type = FieldType.text,store = true)
+    @Field(type = FieldType.String,store = true)
     private String countryId;
 
   @Field( type = FieldType.Nested)

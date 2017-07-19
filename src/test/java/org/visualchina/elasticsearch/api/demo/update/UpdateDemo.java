@@ -2,9 +2,6 @@ package org.visualchina.elasticsearch.api.demo.update;
 
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.common.xcontent.XContentFactory;
-import org.elasticsearch.script.Script;
-import org.elasticsearch.script.ScriptService;
-import org.elasticsearch.script.ScriptType;
 import org.junit.Test;
 import org.visualchina.elasticsearch.api.demo.BaseDemo;
 

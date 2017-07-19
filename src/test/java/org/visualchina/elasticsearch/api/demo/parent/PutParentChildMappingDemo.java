@@ -14,10 +14,18 @@ public class PutParentChildMappingDemo extends BaseDemo {
 
     @Test
     public void test() throws Exception {
-        elasticsearchTemplate.createIndex(EsCountry.class);
-        elasticsearchTemplate.createIndex(EsProvince.class);
-        elasticsearchTemplate.createIndex(EsCity.class);
-        elasticsearchTemplate.putMapping(EsProvince.class);
-        elasticsearchTemplate.putMapping(EsCity.class);
+
+//        elasticsearchTemplate.deleteIndex(EsCountry.class);
+//        elasticsearchTemplate.deleteIndex(EsProvince.class);
+//        elasticsearchTemplate.deleteIndex(EsCity.class);
+//
+//        elasticsearchTemplate.createIndex(EsCountry.class);
+//        elasticsearchTemplate.createIndex(EsProvince.class);
+//        elasticsearchTemplate.createIndex(EsCity.class);
+
+        elasticsearchTemplate.putMapping(EsCountry.class);
+//        elasticsearchTemplate.putMapping(EsProvince.class);
+//        elasticsearchTemplate.putMapping(EsCity.class);
+
     }
 }

@@ -1,9 +1,5 @@
 package org.visualchina.elasticsearch.api.demo.compound;
 
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
-import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
 import org.junit.Test;
 import org.visualchina.elasticsearch.api.demo.BaseDemo;
 
@@ -16,14 +12,5 @@ public class FunctionScoreQueryDemo extends BaseDemo {
 
     @Test
     public void testForClient() throws Exception {
-        FunctionScoreQueryBuilder.FilterFunctionBuilder[] functions = {
-                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                        QueryBuilders.matchQuery("name", "kimchy"),
-                        ScoreFunctionBuilders. randomFunction("ABCDEF")),
-                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                        ScoreFunctionBuilders.exponentialDecayFunction("age", 0L, 1L))
-        };
-        QueryBuilder qb = QueryBuilders.functionScoreQuery(functions);
-        client.prepareSearch().setQuery(qb).execute().actionGet();
     }
 }

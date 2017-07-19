@@ -9,16 +9,16 @@ import org.springframework.data.elasticsearch.annotations.Parent;
  * @auhthor lei.fang@shijue.me
  * @since . 2017-07-19
  */
-@Document(indexName = "apn_index", type = "city")
+@Document(indexName = "apn_index_city", type = "city",replicas = 0)
 public class EsCity {
 
-    @Field(type = FieldType.text,searchAnalyzer = "standard", analyzer = "standard",store = true)
+    @Field(type = FieldType.String,searchAnalyzer = "standard", analyzer = "standard",store = true)
     private String id;
 
-    @Field(type = FieldType.text,searchAnalyzer = "standard", analyzer = "standard",store = true)
+    @Field(type = FieldType.String,searchAnalyzer = "standard", analyzer = "standard",store = true)
     private String name;
 
-    @Field(type = FieldType.text,store = true)
+    @Field(type = FieldType.String,store = true)
     @Parent(type = "province")
     private String provinceId;
 

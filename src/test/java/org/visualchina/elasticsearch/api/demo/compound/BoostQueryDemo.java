@@ -14,10 +14,6 @@ public class BoostQueryDemo extends BaseDemo {
 
     @Test
     public void testForClient() throws Exception {
-        QueryBuilder qb = QueryBuilders.boostingQuery(
-                QueryBuilders.termQuery("name","kimchy"),
-                QueryBuilders.termQuery("name","dadoonet"))
-                .negativeBoost(0.2f);
-        client.prepareSearch().setQuery(qb).execute().actionGet();
+
     }
 }

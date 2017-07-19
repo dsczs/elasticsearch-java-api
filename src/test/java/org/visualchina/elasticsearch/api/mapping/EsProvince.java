@@ -12,16 +12,16 @@ import java.util.List;
  * @auhthor lei.fang@shijue.me
  * @since . 2017-07-19
  */
-@Document(indexName = "apn_index", type = "province")
+@Document(indexName = "apn_index_province", type = "province",replicas = 0)
 public class EsProvince {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.text,searchAnalyzer = "standard", analyzer = "standard",store = true)
+    @Field(type = FieldType.String,searchAnalyzer = "standard", analyzer = "standard",store = true)
     private String name;
 
-    @Field(type = FieldType.text,store = true)
+    @Field(type = FieldType.String,store = true)
     @Parent(type = "country")
     private String countryId;
 
