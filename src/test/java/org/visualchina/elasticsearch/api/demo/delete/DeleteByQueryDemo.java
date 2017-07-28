@@ -1,7 +1,6 @@
 package org.visualchina.elasticsearch.api.demo.delete;
 
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.junit.Test;
 import org.visualchina.elasticsearch.api.demo.BaseDemo;
@@ -15,12 +14,6 @@ public class DeleteByQueryDemo extends BaseDemo {
 
     @Test
     public void testForClient() throws Exception {
-        BulkByScrollResponse response =
-                DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
-                        .filter(QueryBuilders.matchQuery("gender", "male"))
-                        .source("persons")
-                        .get();
-        long deleted = response.getDeleted();
     }
 
 }
