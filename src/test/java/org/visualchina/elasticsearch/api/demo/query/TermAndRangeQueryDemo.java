@@ -1,6 +1,5 @@
 package org.visualchina.elasticsearch.api.demo.query;
 
-import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
 import org.visualchina.elasticsearch.api.demo.BaseDemo;
 
@@ -13,10 +12,7 @@ public class TermAndRangeQueryDemo  extends BaseDemo{
     @Test
     public void test() throws Exception {
 
-        QueryBuilders.boolQuery()
-                .must(QueryBuilders.termQuery("",""))
-                .must(QueryBuilders.rangeQuery("").from(1).to(100))
-                .must(QueryBuilders.termQuery("",""));
+
 
     }
 }
