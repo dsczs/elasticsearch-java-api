@@ -13,7 +13,10 @@ public class TermAndRangeQueryDemo  extends BaseDemo{
     @Test
     public void test() throws Exception {
 
-
+        QueryBuilders.boolQuery()
+                .must(QueryBuilders.termQuery("",""))
+                .must(QueryBuilders.rangeQuery("").from(1).to(100))
+                .must(QueryBuilders.termQuery("",""));
 
     }
 }
