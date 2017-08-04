@@ -8,7 +8,7 @@
 
     关于elasticsearch自身提供的client,elasticsearchTemplate,restClient相关的java-api例子
 
-## 例子,进行一个match_all查询
+## match_all查询
 
 ###  使用client
 
