@@ -1,9 +1,13 @@
 package org.visualchina.elasticsearch.api.demo.query;
 
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.visualchina.elasticsearch.api.demo.BaseDemo;
+import org.visualchina.elasticsearch.api.mapping.Photo;
 
 /**
  * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.5/java-query-dsl-match-all-query.html'></a>
@@ -14,9 +18,20 @@ public class MatchAllQueryDemo extends BaseDemo{
 
     @Test
     public void testForClient() throws Exception {
-        QueryBuilder qb = QueryBuilders.matchAllQuery();
-        client.prepareSearch().setQuery(qb).execute().actionGet();
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        SearchResponse searchResponse = client.prepareSearch()
+                .setIndices("indexName")
+                .setTypes("typeName")
+                .setQuery(queryBuilder)
+                .execute().actionGet();
     }
 
-
+    @Test
+    public void testForElasticsearchTemplate() throws Exception {
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        SearchQuery searchQuery  = new NativeSearchQuery(
+                QueryBuilders.matchAllQuery()
+        );
+        elasticsearchTemplate.queryForList(searchQuery, Photo.class);
+    }
 }
