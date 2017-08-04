@@ -35,16 +35,16 @@
 ###  使用 RestClient
 
 ~~~java
-         String method = "POST";
-         String endpoint = "/index/type/_search";
-         HttpEntity entity = new NStringEntity("{\n" +
-                 "  \"query\": {\n" +
-                 "    \"match_all\": {}\n" +
-                 "  }\n" +
-                 "}", ContentType.APPLICATION_JSON);
+ String method = "POST";
+ String endpoint = "/index/type/_search";
+ HttpEntity entity = new NStringEntity("{\n" +
+         "  \"query\": {\n" +
+         "    \"match_all\": {}\n" +
+         "  }\n" +
+         "}", ContentType.APPLICATION_JSON);
 
-         Response response = restClient.performRequest(method,endpoint,Collections.<String, String>emptyMap(),entity);
-         System.out.println(EntityUtils.toString(response.getEntity()));
+ Response response = restClient.performRequest(method,endpoint,Collections.<String, String>emptyMap(),entity);
+ System.out.println(EntityUtils.toString(response.getEntity()));
 ~~~
 
 ## 下载
