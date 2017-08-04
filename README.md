@@ -14,27 +14,28 @@
 
 ~~~java
    QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
-          SearchResponse searchResponse = client.prepareSearch()
+   SearchResponse searchResponse = client.prepareSearch()
                   .setIndices("indexName")
                   .setTypes("typeName")
                   .setQuery(queryBuilder)
-                  .execute().actionGet();
+                  .execute()
+                  .actionGet();
 ~~~
 
 ### 使用elasticsearchTemplate
 
 ~~~java
  QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
-        SearchQuery searchQuery  = new NativeSearchQuery(
+ SearchQuery searchQuery  = new NativeSearchQuery(
                 QueryBuilders.matchAllQuery()
         );
-        elasticsearchTemplate.queryForList(searchQuery, XXXXX.class);
+ elasticsearchTemplate.queryForList(searchQuery, XXXXX.class);
 ~~~
 
 ###  使用 RestClient
 
 ~~~java
- String method = "POST";
+         String method = "POST";
          String endpoint = "/index/type/_search";
          HttpEntity entity = new NStringEntity("{\n" +
                  "  \"query\": {\n" +
