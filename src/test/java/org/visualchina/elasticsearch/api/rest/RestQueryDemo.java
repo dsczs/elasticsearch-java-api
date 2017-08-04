@@ -8,6 +8,8 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Response;
 import org.junit.Test;
 import org.visualchina.elasticsearch.api.demo.XPackBaseDemo;
+
+import java.io.IOException;
 import java.util.Collections;
 
 /**
@@ -92,6 +94,33 @@ public class RestQueryDemo extends XPackBaseDemo{
         HttpEntity entity = new NStringEntity("{\n" +
                 "  \"doc\": {\n" +
                 "    \"user\":\"大美女\"\n" +
+                "  }\n" +
+                "}", ContentType.APPLICATION_JSON);
+        Response response = restClient.performRequest(method,endpoint,Collections.<String, String>emptyMap(),entity);
+        System.out.println(EntityUtils.toString(response.getEntity()));
+    }
+
+    @Test
+    public void testGeoBoundingBox() throws IOException {
+        String method = "POST";
+        String endpoint = "/attractions/restaurant/_search";
+        HttpEntity entity = new NStringEntity("{\n" +
+                "  \"query\": {\n" +
+                "    \"match_all\": {}\n" +
+                "  },\n" +
+                "  \"post_filter\": {\n" +
+                "    \"geo_bounding_box\": {\n" +
+                "      \"location\": {\n" +
+                "        \"top_left\": {\n" +
+                "          \"lat\": 39.990481,\n" +
+                "          \"lon\": 116.277144\n" +
+                "        },\n" +
+                "        \"bottom_right\": {\n" +
+                "          \"lat\": 39.927323,\n" +
+                "          \"lon\": 116.405638\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
                 "  }\n" +
                 "}", ContentType.APPLICATION_JSON);
         Response response = restClient.performRequest(method,endpoint,Collections.<String, String>emptyMap(),entity);

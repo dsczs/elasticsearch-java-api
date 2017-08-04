@@ -1,10 +1,11 @@
 package org.visualchina.elasticsearch.api.mapping;
 
 /**
- * @author lei.fang
- * @since 2017/3/10
+ * @auhthor lei.fang@shijue.me
+ * @since . 2017-08-04
  */
-public class GeoCoordinates {
+public class Location {
+
 
     //纬度
     private double  lat;
@@ -12,10 +13,7 @@ public class GeoCoordinates {
     //经度
     private Double lon;
 
-    public GeoCoordinates() {
-    }
-
-    public GeoCoordinates(double lat, Double lon) {
+    public Location(double lat, Double lon) {
         this.lat = lat;
         this.lon = lon;
     }
