@@ -9,6 +9,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -16,13 +17,10 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import java.net.InetAddress;
 
 /**
- * Elasticsearch 5.5.0 的client 和 ElasticsearchTemplate的初始化
- * @see <a href='https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.5/transport-client.html'></a>
  * @auhthor lei.fang@shijue.me
- * @since . 2017-07-07
+ * @since . 2017-08-04
  */
-public class BaseDemo {
-
+public class XPackBaseDemo {
     protected TransportClient client;
     protected ElasticsearchTemplate elasticsearchTemplate;
     protected RestClient restClient ;
@@ -30,14 +28,15 @@ public class BaseDemo {
     @Before
     public void setUp() throws Exception {
         /**
-         * 这里的连接方式指的是没有安装x-pack插件,如果安装了x-pack则参考{@link XPackBaseDemo}
+         * 如果es集群安装了x-pack插件则以此种方式连接集群
          * 1. java客户端的方式是以tcp协议在9300端口上进行通信
          * 2. http客户端的方式是以http协议在9200端口上进行通信
          */
-        client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.60.249"), 9300));
+        Settings settings = Settings.builder(). put("xpack.security.user", "elastic:changeme").build();
+        client = new PreBuiltXPackTransportClient(settings)
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
         elasticsearchTemplate = new ElasticsearchTemplate(client);
-        restClient = RestClient.builder(new HttpHost("192.168.60.249",9200)).build();
+        restClient = RestClient.builder(new HttpHost("localhost",9200)).build();
     }
 
     @Test
@@ -47,4 +46,5 @@ public class BaseDemo {
         ActionFuture<AnalyzeResponse> analyzeResponseActionFuture =  elasticsearchTemplate.getClient().admin().indices().analyze(analyzeRequest);
         System.out.println(analyzeResponseActionFuture.actionGet().getTokens());
     }
+
 }
