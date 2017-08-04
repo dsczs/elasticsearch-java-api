@@ -1,8 +1,6 @@
 package org.visualchina.elasticsearch.api.rest;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.nio.entity.NStringEntity;
@@ -10,7 +8,6 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Response;
 import org.junit.Test;
 import org.visualchina.elasticsearch.api.demo.XPackBaseDemo;
-
 import java.util.Collections;
 
 /**
