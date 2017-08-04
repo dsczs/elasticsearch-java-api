@@ -10,6 +10,7 @@ import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.util.EntityUtils;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
@@ -104,6 +105,6 @@ public class XPackBaseDemo {
         params.put("analyzer","standard");
         params.put("text","中华人民共和国");
         Response response = restClient.performRequest(method,endpoint,params);
-        System.out.println(JSON.toJSONString(response, SerializerFeature.PrettyFormat));
+        System.out.println(JSON.toJSONString(EntityUtils.toString(response.getEntity())));
     }
 }
