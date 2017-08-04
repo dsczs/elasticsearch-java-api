@@ -53,8 +53,8 @@
 
 ## 参考
 
-    - [spring-data-elasticsearch](https://github.com/spring-projects/spring-data-elasticsearch)
-    - [Java REST Client [5.5]](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/_example_requests.html)
+- [spring-data-elasticsearch](https://github.com/spring-projects/spring-data-elasticsearch)
+- [Java REST Client [5.5]](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/_example_requests.html)
 
 
 
