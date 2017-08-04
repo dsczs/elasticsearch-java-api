@@ -42,6 +42,7 @@
         <dubbo-version>2.5.3</dubbo-version>
         <httpclient-version>4.5.1</httpclient-version>
         <zkclient-version>0.1</zkclient-version>
+        <sl4j.version>1.7.25</sl4j.version>
     </properties>
 
     <dependencies>
@@ -85,6 +86,11 @@
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>x-pack-transport</artifactId>
             <version>${elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${sl4j.version}</version>
         </dependency>
     </dependencies>
 
