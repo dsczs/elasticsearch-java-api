@@ -2,7 +2,7 @@
 
 ## 当前版本
 
- [版本](https://github.com/elasticsearch-cn/elasticsearch-definitive-guide) Elasticsearch 5.5.0
+ Elasticsearch  [版本](https://github.com/elasticsearch-cn/elasticsearch-definitive-guide) 5.5.0
 
 ## 说明
 
