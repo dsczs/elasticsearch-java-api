@@ -1,6 +1,7 @@
 package org.visualchina.elasticsearch.api.demo;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
@@ -105,6 +106,6 @@ public class XPackBaseDemo {
         params.put("analyzer","standard");
         params.put("text","中华人民共和国");
         Response response = restClient.performRequest(method,endpoint,params);
-        System.out.println(JSON.toJSONString(EntityUtils.toString(response.getEntity())));
+        System.out.println(JSON.toJSONString(JSONObject.parse(EntityUtils.toString(response.getEntity())),SerializerFeature.PrettyFormat));
     }
 }
