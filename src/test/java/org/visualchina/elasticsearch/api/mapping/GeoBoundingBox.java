@@ -1,20 +1,29 @@
 package org.visualchina.elasticsearch.api.mapping;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.GeoPointField;
 
 /**
  * @auhthor lei.fang@shijue.me
  * @since . 2017-08-04
  */
-@Document(indexName = "attractions",type = "restaurant",replicas = 0,shards = 1)
+@Document(indexName = "universities",type = "university")
 public class GeoBoundingBox {
 
+    @Id
+    private String id;
 
+    @Field(type= FieldType.text)
     private String name;
 
     @GeoPointField
     private Location location;
+
+    public GeoBoundingBox() {
+    }
 
     public GeoBoundingBox(String name, Location location) {
         this.name = name;
@@ -36,6 +45,7 @@ public class GeoBoundingBox {
     public void setLocation(Location location) {
         this.location = location;
     }
+
 }
 
 

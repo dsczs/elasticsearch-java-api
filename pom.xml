@@ -30,12 +30,10 @@
 
     <properties>
         <elasticsearch.version>5.5.0</elasticsearch.version>
-        <spring-version>4.2.8.RELEASE</spring-version>
-        <spring-elasticsearch-version>3.0.0.RC2</spring-elasticsearch-version>
+        <spring-version>5.0.0.RC3</spring-version>
         <spring-data-elasticsearch-version>3.0.0.RC2</spring-data-elasticsearch-version>
-        <spring-test-version>4.0.2.RELEASE</spring-test-version>
         <fastjson-version>1.2.7</fastjson-version>
-        <junit-version>4.10</junit-version>
+        <junit-version>4.12</junit-version>
         <slf4j-version>1.7.5</slf4j-version>
         <ik.version>3.2.8</ik.version>
         <spring-test-version>4.1.6.RELEASE</spring-test-version>
@@ -74,6 +72,10 @@
                 <exclusion>
                     <artifactId>elasticsearch</artifactId>
                     <groupId>org.elasticsearch</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-test</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

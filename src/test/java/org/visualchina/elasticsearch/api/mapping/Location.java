@@ -13,6 +13,9 @@ public class Location {
     //经度
     private Double lon;
 
+    public Location() {
+    }
+
     public Location(double lat, Double lon) {
         this.lat = lat;
         this.lon = lon;
