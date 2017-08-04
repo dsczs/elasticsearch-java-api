@@ -1,9 +1,13 @@
 package org.visualchina.elasticsearch.api.demo;
 
+import com.alibaba.fastjson.JSON;
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
+import org.apache.http.message.BasicHeader;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
+import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -15,6 +19,9 @@ import org.junit.Test;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 
 import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @auhthor lei.fang@shijue.me
@@ -36,15 +43,40 @@ public class XPackBaseDemo {
         client = new PreBuiltXPackTransportClient(settings)
                 .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
         elasticsearchTemplate = new ElasticsearchTemplate(client);
-        restClient = RestClient.builder(new HttpHost("localhost",9200)).build();
+        restClient = RestClient.builder(new HttpHost("localhost",9200)).setDefaultHeaders(new Header[]{new BasicHeader("xpack.security.user","elastic:changeme")}).build();
+    }
+
+
+    @Test
+    public void testClientConnection() throws Exception {
+        AnalyzeRequest analyzeRequest = new AnalyzeRequest();
+        analyzeRequest.text("中华人民共和国");
+        ActionFuture<AnalyzeResponse> analyzeResponseActionFuture = client.admin().indices().analyze(analyzeRequest);
+        List<AnalyzeResponse.AnalyzeToken> analyzeTokens =  analyzeResponseActionFuture.actionGet().getTokens();
+        for (AnalyzeResponse.AnalyzeToken analyzeToken  : analyzeTokens){
+            System.out.println(analyzeToken.getTerm());
+        }
     }
 
     @Test
-    public void testConnection() throws Exception {
+    public void testElasticsearchTemplateConnection() throws Exception {
         AnalyzeRequest analyzeRequest = new AnalyzeRequest();
-        analyzeRequest.text("Sean Archer");
+        analyzeRequest.text("中华人民共和国");
         ActionFuture<AnalyzeResponse> analyzeResponseActionFuture =  elasticsearchTemplate.getClient().admin().indices().analyze(analyzeRequest);
-        System.out.println(analyzeResponseActionFuture.actionGet().getTokens());
+        List<AnalyzeResponse.AnalyzeToken> analyzeTokens =  analyzeResponseActionFuture.actionGet().getTokens();
+        for (AnalyzeResponse.AnalyzeToken analyzeToken  : analyzeTokens){
+            System.out.println(analyzeToken.getTerm());
+        }
     }
 
+    @Test
+    public void testRestClientConnection() throws Exception {
+        String method = "GET";
+        String endpoint = "/_analyze";
+        Map<String, String> params = new HashMap<>();
+        params.put("analyzer","standard");
+        params.put("text","中华人民共和国");
+        Response response = restClient.performRequest(method,endpoint,params);
+        System.out.println(JSON.toJSONString(response.getEntity()));
+    }
 }
