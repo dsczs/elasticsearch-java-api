@@ -15,12 +15,14 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 import org.junit.After;
@@ -79,7 +81,7 @@ public class XPackBaseDemo {
     @Test
     public void testClientConnection() throws Exception {
         AnalyzeRequest analyzeRequest = new AnalyzeRequest();
-        analyzeRequest.text("中华人民共和国");
+        analyzeRequest.text("美女");
         ActionFuture<AnalyzeResponse> analyzeResponseActionFuture = client.admin().indices().analyze(analyzeRequest);
         List<AnalyzeResponse.AnalyzeToken> analyzeTokens =  analyzeResponseActionFuture.actionGet().getTokens();
         for (AnalyzeResponse.AnalyzeToken analyzeToken  : analyzeTokens){
@@ -108,4 +110,12 @@ public class XPackBaseDemo {
         Response response = restClient.performRequest(method,endpoint,params);
         System.out.println(JSON.toJSONString(JSONObject.parse(EntityUtils.toString(response.getEntity())),SerializerFeature.PrettyFormat));
     }
+
+    protected void println(SearchResponse searchResponse){
+        SearchHit[]  searchHits = searchResponse.getHits().getHits();
+        for (SearchHit searchHit : searchHits){
+            System.out.println(JSON.toJSONString(searchHit.getSource(),SerializerFeature.PrettyFormat));
+        }
+    }
+
 }

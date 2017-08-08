@@ -35,7 +35,7 @@
         <fastjson-version>1.2.7</fastjson-version>
         <junit-version>4.12</junit-version>
         <slf4j-version>1.7.5</slf4j-version>
-        <ik.version>3.2.8</ik.version>
+        <ik.version>5.5.1</ik.version>
         <spring-test-version>4.1.6.RELEASE</spring-test-version>
         <dubbo-version>2.5.3</dubbo-version>
         <httpclient-version>4.5.1</httpclient-version>
@@ -80,8 +80,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.wltea.ik-analyzer</groupId>
-            <artifactId>ik-analyzer</artifactId>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch-analysis-ik</artifactId>
             <version>${ik.version}</version>
         </dependency>
         <dependency>

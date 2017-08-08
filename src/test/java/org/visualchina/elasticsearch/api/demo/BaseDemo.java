@@ -8,11 +8,13 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.After;
 import org.junit.Before;
@@ -44,7 +46,7 @@ public class BaseDemo {
          * 2. http客户端的方式是以http协议在9200端口上进行通信
          */
         client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.60.249"), 9300));
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
         elasticsearchTemplate = new ElasticsearchTemplate(client);
         restClient = RestClient.builder(new HttpHost("192.168.60.249",9200)).build();
     }
@@ -92,4 +94,12 @@ public class BaseDemo {
         Response response = restClient.performRequest(method,endpoint,params);
         System.out.println(JSON.toJSONString(JSONObject.parse(EntityUtils.toString(response.getEntity())), SerializerFeature.PrettyFormat));
     }
+
+    protected void println(SearchResponse searchResponse){
+        SearchHit[]  searchHits = searchResponse.getHits().getHits();
+        for (SearchHit searchHit : searchHits){
+            System.out.println(JSON.toJSONString(searchHit.getSource(),SerializerFeature.PrettyFormat));
+        }
+    }
+
 }
