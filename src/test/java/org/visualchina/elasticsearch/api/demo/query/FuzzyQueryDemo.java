@@ -37,7 +37,10 @@ public class FuzzyQueryDemo extends XPackBaseDemo {
 //                .fuzziness(Fuzziness.ZERO);  没有结果
 //                .fuzziness(Fuzziness.ONE);  会出现结果ka,kib
 //                .fuzziness(Fuzziness.TWO);会出现结果ka,kib,kab
-                .fuzziness(Fuzziness.AUTO); //会出现结果ka,kib,kab
+                .fuzziness(Fuzziness.AUTO) ////会出现结果ka,kib,kab,但是这里以java-api的方式好像不太好使,原因未定
+                .prefixLength(0)
+                .boost(1)
+                .maxExpansions(100);
         SearchResponse response = client.prepareSearch()
                 .setIndices("index")
                 .setTypes("type")
