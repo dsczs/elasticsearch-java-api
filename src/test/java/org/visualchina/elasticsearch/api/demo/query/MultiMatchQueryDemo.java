@@ -1,6 +1,8 @@
 package org.visualchina.elasticsearch.api.demo.query;
 
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.common.unit.Fuzziness;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
@@ -17,14 +19,24 @@ public class MultiMatchQueryDemo extends XPackBaseDemo {
 
     @Test
     public void testForClient() throws Exception {
-        QueryBuilder qb = QueryBuilders.multiMatchQuery(
-                "elasticsearch match query",
-                "title", "descrption"
-        );
+        MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery("elasticsearch match query","title", "descrption");
+
+        multiMatchQueryBuilder.analyzer("standard");
+        multiMatchQueryBuilder.cutoffFrequency(0.001f);
+        multiMatchQueryBuilder.field("title",20);
+        multiMatchQueryBuilder.fuzziness(Fuzziness.TWO);
+        multiMatchQueryBuilder.maxExpansions(100);
+        multiMatchQueryBuilder.prefixLength(10);
+        multiMatchQueryBuilder.tieBreaker(20);
+        multiMatchQueryBuilder.type(MultiMatchQueryBuilder.Type.BEST_FIELDS);
+        multiMatchQueryBuilder.boost(20);
+
+
+
        SearchResponse searchResponse =  client.prepareSearch()
                 .setIndices("blogs")
                 .setTypes("blog")
-                .setQuery(qb)
+                .setQuery(multiMatchQueryBuilder)
                 .execute()
                 .actionGet();
 
