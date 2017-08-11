@@ -34,6 +34,7 @@ import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @auhthor lei.fang@shijue.me
@@ -117,5 +118,4 @@ public class XPackBaseDemo {
             System.out.println(JSON.toJSONString(searchHit.getSource(),SerializerFeature.PrettyFormat));
         }
     }
-
 }
