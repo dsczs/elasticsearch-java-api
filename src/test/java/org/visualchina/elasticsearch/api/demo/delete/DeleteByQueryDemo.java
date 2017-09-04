@@ -1,8 +1,11 @@
 package org.visualchina.elasticsearch.api.demo.delete;
 
+import org.elasticsearch.index.query.NestedQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.junit.Test;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.Query;
 import org.visualchina.elasticsearch.api.demo.BaseDemo;
 
 /**
@@ -14,6 +17,7 @@ public class DeleteByQueryDemo extends BaseDemo {
 
     @Test
     public void testForClient() throws Exception {
+         DeleteByQueryAction.INSTANCE.newRequestBuilder(client).filter(QueryBuilders.termQuery("status",1)).execute().actionGet();
     }
 
 }
